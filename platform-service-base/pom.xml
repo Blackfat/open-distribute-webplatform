@@ -98,7 +98,6 @@
 	</dependencies>
 	
 	<build>
-		<finalName>platform-service-base</finalName>
 		<resources>
 			<resource>
 				<targetPath>${project.build.directory}/classes</targetPath>

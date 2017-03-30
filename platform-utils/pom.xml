@@ -138,7 +138,6 @@
 
 
   <build>
-    <finalName>platform-utils</finalName>
       <plugins>
           <!-- source attach plugin -->
           <plugin>

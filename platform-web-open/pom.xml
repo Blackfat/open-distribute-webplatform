@@ -19,7 +19,5 @@
             <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <finalName>platform-web-open</finalName>
-    </build>
+
 </project>

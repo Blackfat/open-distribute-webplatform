@@ -20,7 +20,6 @@
 	
 	
 	<build>
-		<finalName>platform-config</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
