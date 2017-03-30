@@ -43,6 +43,8 @@
 		<module>../platform-config</module>
 		<module>../platform-api-base</module>
 		<module>../platform-service-base</module>
+		<module>../platform-web-open</module>
+        <module>../platform-utils</module>
 	</modules>
 
 	<dependencyManagement>
