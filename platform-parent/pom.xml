@@ -36,6 +36,7 @@
         <platform-api-base.version>1.0.0-SNAPSHOT</platform-api-base.version>
         <platform-service-base.version>1.0.0-SNAPSHOT</platform-service-base.version>
         <platform-config.version>1.0.0-SNAPSHOT</platform-config.version>
+		<platform-util.version>1.0.0-SNAPSHOT</platform-util.version>
 	</properties>
 
 
@@ -67,6 +68,12 @@
 		  		<artifactId>platform-config</artifactId>
 		  		<version>${platform-config.version}</version>
 		  	</dependency>
+
+			<dependency>
+				<groupId>com.blackfat.common</groupId>
+				<artifactId>platform-utils</artifactId>
+				<version>${platform-util.version}</version>
+			</dependency>
 		  	
 		  	<!--platform end   -->
 		    
