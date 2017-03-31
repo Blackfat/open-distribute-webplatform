@@ -35,6 +35,7 @@ public class CachingDateFormatter {
 
         if (timestamp != cached.timestamp) {
             final CachedTime newCachedTime = new CachedTime(timestamp, fastDateFormat.format(timestampMillis));
+            /*CAS操作，set之前先比较值有没有变化，没有变化，才赋值*/
             if (cachedTime.compareAndSet(cached, newCachedTime)) {
                 cached = newCachedTime;
             } else {
