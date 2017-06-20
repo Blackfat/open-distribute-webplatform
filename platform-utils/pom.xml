@@ -100,6 +100,18 @@
       </dependency>
       <!-- XML end -->
 
+      <!--httpclient -->
+      <dependency>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
+          <version>4.4.4</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
+          <version>4.5.2</version>
+      </dependency>
+
       <!-- logging begin -->
       <dependency>
           <groupId>org.slf4j</groupId>
