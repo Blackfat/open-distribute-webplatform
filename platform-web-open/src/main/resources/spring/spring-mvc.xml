@@ -30,6 +30,6 @@
     <!--将静态资源的处理经由Spring MVC框架交回Web应用服务器处理-->
     <mvc:default-servlet-handler />
 
-    <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig"/>
+    <bean class="com.blackfat.open.platform.common.SwaggerConfig"/>
 
 </beans>
