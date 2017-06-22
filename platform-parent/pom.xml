@@ -46,7 +46,8 @@
 		<module>../platform-service-base</module>
 		<module>../platform-web-open</module>
         <module>../platform-utils</module>
-	</modules>
+        <module>../platform-task</module>
+    </modules>
 
 	<dependencyManagement>
 		<dependencies>
@@ -216,6 +217,20 @@
 				<groupId>org.apache.zookeeper</groupId>
 				<artifactId>zookeeper</artifactId>
 				<version>${zookeeper.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>com.101tec</groupId>

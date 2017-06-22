@@ -1,19 +1,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>platform-parent</artifactId>
+        <groupId>com.blackfat.common</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../platform-parent/pom.xml</relativePath>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.blackfat.common</groupId>
-        <artifactId>platform-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../platform-parent</relativePath>
-    </parent>
+    <artifactId>platform-task</artifactId>
+    <packaging>jar</packaging>
 
-    <artifactId>platform-web-open</artifactId>
-    <packaging>war</packaging>
-    <name>platform-web-open</name>
+    <name>platform-task</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <elastic-job.version>1.1.1</elastic-job.version>
+    </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>com.blackfat.common</groupId>
             <artifactId>platform-utils</artifactId>
@@ -22,6 +27,7 @@
             <groupId>com.blackfat.common</groupId>
             <artifactId>platform-config</artifactId>
         </dependency>
+
 
         <!-- spring start -->
         <dependency>
@@ -62,14 +68,6 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
         </dependency>
         <dependency>
@@ -89,83 +87,30 @@
         </dependency>
         <!-- aspectj end -->
 
-        <!-- dubbo begin -->
+        <!--elastic-job begin-->
+        <!-- 引入elastic-job核心模块 -->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.dangdang</groupId>
+            <artifactId>elastic-job-core</artifactId>
+            <version>${elastic-job.version}</version>
         </dependency>
+        <!-- 使用springframework自定义命名空间时引入 elastic-job-console-->
+        <dependency>
+            <groupId>com.dangdang</groupId>
+            <artifactId>elastic-job-spring</artifactId>
+            <version>${elastic-job.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.101tec</groupId>
             <artifactId>zkclient</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.netty</groupId>
-            <artifactId>netty</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-        </dependency>
-        <!-- dubbo end -->
-
-
-        <!-- servlet begin-->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- servlet  end-->
-
-
-        <!-- swagger begin -->
-        <dependency>
-            <groupId>com.mangofactory</groupId>
-            <artifactId>swagger-springmvc</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.mangofactory</groupId>
-            <artifactId>swagger-models</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.wordnik</groupId>
-            <artifactId>swagger-annotations</artifactId>
-        </dependency>
-        <!-- swagger end -->
-
-
-        <!-- JSON begin -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-jaxb-annotations</artifactId>
-        </dependency>
-        <!-- JSON end -->
+        <!--elastic-job end-->
 
 
         <!-- LOGGING begin -->
@@ -199,7 +144,6 @@
             <artifactId>log4jdbc</artifactId>
         </dependency>
         <!-- LOGGING end -->
-
 
         <!-- utils begin -->
         <dependency>
@@ -274,7 +218,7 @@
         </dependency>
         <!--httpclient end -->
 
-       <!--test begin-->
+        <!--test begin-->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
@@ -283,45 +227,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
-        <!--test begin-->
+        <!--test end-->
     </dependencies>
-
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-        <plugins>
-            <!-- 用来编译源代码的 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                    <compilerVersion>1.7</compilerVersion>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
-                <configuration>
-                    <webResources>
-                        <resource>
-                            <directory>src/main/webapp</directory>
-                        </resource>
-                    </webResources>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
