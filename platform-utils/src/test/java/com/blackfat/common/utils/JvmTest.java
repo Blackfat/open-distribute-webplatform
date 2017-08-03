@@ -25,6 +25,15 @@ public class JvmTest {
      -XX:+PrintGCTimeStamps 打印GC的时间戳
 
      -XX:+PrintTenuringDistribution  幸存者区（Survivors）对象的年龄分布（age distribution）
+
+     -XX:+UseSerialGC 使用串行GC
+
+     -XX:+UseParallelGC 使用并行GC
+
+     -XX:ParallelGCThreads=NNN 来指定 GC 线程数
+
+     -XX:+UseConcMarkSweepGC 使用CMS
+
     *
     * */
     public static void main(String[] args) throws InterruptedException {
