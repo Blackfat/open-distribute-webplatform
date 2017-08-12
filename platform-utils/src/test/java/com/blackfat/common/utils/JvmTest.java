@@ -34,6 +34,12 @@ public class JvmTest {
 
      -XX:+UseConcMarkSweepGC 使用CMS
 
+     -XX:+HeapDumpOnOutOfMemoryError 出现 OOME 时生成堆 dump
+
+     -XX:HeapDumpPath 生成堆文件地址
+
+     -Xloggc:  生成GC日志地址
+
     *
     * */
     public static void main(String[] args) throws InterruptedException {
