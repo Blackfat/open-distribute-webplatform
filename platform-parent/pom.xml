@@ -37,6 +37,8 @@
         <platform-service-base.version>1.0.0-SNAPSHOT</platform-service-base.version>
         <platform-config.version>1.0.0-SNAPSHOT</platform-config.version>
 		<platform-util.version>1.0.0-SNAPSHOT</platform-util.version>
+		<platform-api-message>1.0.0-SNAPSHOT</platform-api-message>
+		<platform-service-message>1.0.0-SNAPSHOT</platform-service-message>
 	</properties>
 
 
@@ -47,7 +49,9 @@
 		<module>../platform-web-open</module>
         <module>../platform-utils</module>
         <module>../platform-task</module>
-    </modules>
+		<module>../platform-api-message</module>
+		<module>../platform-service-message</module>
+	</modules>
 
 	<dependencyManagement>
 		<dependencies>
@@ -75,6 +79,18 @@
 				<artifactId>platform-utils</artifactId>
 				<version>${platform-util.version}</version>
 			</dependency>
+
+            <dependency>
+                <groupId>com.blackfat.common</groupId>
+                <artifactId>platform-api-message</artifactId>
+                <version>${platform-api-message}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.blackfat.common</groupId>
+                <artifactId>platform-service-message</artifactId>
+                <version>${platform-service-message}</version>
+            </dependency>
 		  	
 		  	<!--platform end   -->
 		    
@@ -401,6 +417,18 @@
                 </exclusions>
             </dependency>
             <!-- common end -->
+
+            <!--activemq -->
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-core</artifactId>
+                <version>5.7.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-pool</artifactId>
+                <version>5.8.0</version>
+            </dependency>
             
             <!-- test begin -->
              <!-- assertj -->
