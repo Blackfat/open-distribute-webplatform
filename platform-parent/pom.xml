@@ -51,6 +51,7 @@
         <module>../platform-task</module>
 		<module>../platform-api-message</module>
 		<module>../platform-service-message</module>
+		<module>../platform-message-notify</module>
 	</modules>
 
 	<dependencyManagement>
