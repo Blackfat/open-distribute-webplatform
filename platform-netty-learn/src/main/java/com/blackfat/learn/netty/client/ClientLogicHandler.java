@@ -1,35 +1,33 @@
 package com.blackfat.learn.netty.client;
 
-import org.jboss.netty.channel.*;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
  * @author wangfeiyang
  * @desc
- * @create 2017/10/13-13:46
+ * @create 2017/11/16-11:51
  */
-public class ClientLogicHandler extends SimpleChannelHandler {
+public class ClientLogicHandler extends ChannelInboundHandlerAdapter {
 
     @Override
-    public void channelConnected(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception {
-        System.out.println("客户端连接成功!");
-        String str = "hi server!";
-        e.getChannel().write(str);//异步
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
     }
 
     @Override
-    public void writeComplete(ChannelHandlerContext ctx, WriteCompletionEvent e) throws Exception {
-        System.out.println("客户端写消息完成");
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        ctx.write(msg);
     }
 
     @Override
-    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
-        String msg = (String) e.getMessage();
-        System.out.println("客户端接收到消息, msg: " + msg);
+    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+        ctx.flush();
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
-        e.getCause().printStackTrace();
-        e.getChannel().close();
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        System.out.println("Unexpected exception from downstream");
+        ctx.close();
     }
 }

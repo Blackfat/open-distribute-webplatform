@@ -1,55 +1,46 @@
 package com.blackfat.learn.netty.server;
 
-import org.jboss.netty.bootstrap.ServerBootstrap;
-import org.jboss.netty.channel.*;
-import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
-import org.jboss.netty.handler.codec.string.StringDecoder;
-import org.jboss.netty.handler.codec.string.StringEncoder;
-
-import java.net.InetSocketAddress;
-import java.util.concurrent.Executors;
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 /**
  * @author wangfeiyang
  * @desc
- * @create 2017/10/13-10:01
+ * @create 2017/11/16-11:50
  */
 public class Server {
 
-    public void start() {
-        ChannelFactory factory = new NioServerSocketChannelFactory(
-                Executors.newCachedThreadPool(), // boss线程池
-                Executors.newCachedThreadPool(),  // worker线程池
-                8); // worker线程数
+    public void start(){
+        EventLoopGroup bossGroup = new NioEventLoopGroup();// 接受客户端请求
+        EventLoopGroup workerGroup = new NioEventLoopGroup();// 处理客户端读写操作
+        try{
+            ServerBootstrap b = new ServerBootstrap();
+            b.group(bossGroup,workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .option(ChannelOption.SO_BACKLOG, 100)
+                    .handler(new LoggingHandler(LogLevel.INFO))
+                    .childHandler(new ChannelInitializer<SocketChannel>() {
+                        @Override
+                        protected void initChannel(SocketChannel ch) throws Exception {
+                            ch.pipeline().addLast(new ServerLogicHandler());
+                        }
+                    });
 
-        ServerBootstrap bootstrap = new ServerBootstrap(factory);
-
-   /*
-   * 对于每一个连接channel, server都会调用PipelineFactory为该连接创建一个ChannelPipline
-   *
-   * */
-        bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
-            @Override
-            public ChannelPipeline getPipeline() throws Exception {
-                ChannelPipeline pipeline = Channels.pipeline();
-                pipeline.addLast("decoder", new StringDecoder());
-                pipeline.addLast("encoder", new StringEncoder());
-                pipeline.addLast("handler", new ServerLogicHandler());
-                return pipeline;
-            }
-        });
-
-        Channel channel = bootstrap.bind(new InetSocketAddress("127.0.0.1", 8080));
-        System.out.println("server start success!");
-
+            ChannelFuture future = b.bind(8080).sync();
+            future.channel().closeFuture().sync();
+        }catch(Exception e){
+                e.printStackTrace();
+        }finally{
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
+        }
     }
-
-
-    public static void main(String[] args) {
-        Server server = new Server();
-        server.start();
-
-    }
-
-
 }
