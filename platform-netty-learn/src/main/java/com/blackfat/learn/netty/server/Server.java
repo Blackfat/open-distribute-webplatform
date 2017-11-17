@@ -43,4 +43,8 @@ public class Server {
             workerGroup.shutdownGracefully();
         }
     }
+
+    public static void main(String[] args) {
+        new Server().start();
+    }
 }

@@ -36,4 +36,8 @@ public class Client {
             group.shutdownGracefully();
         }
     }
+
+    public static void main(String[] args) throws Exception {
+        new Client().start();
+    }
 }

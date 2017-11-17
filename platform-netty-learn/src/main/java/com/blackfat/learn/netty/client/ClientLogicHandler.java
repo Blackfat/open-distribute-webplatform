@@ -1,33 +1,36 @@
 package com.blackfat.learn.netty.client;
 
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.util.CharsetUtil;
 
 /**
  * @author wangfeiyang
  * @desc
  * @create 2017/11/16-11:51
  */
-public class ClientLogicHandler extends ChannelInboundHandlerAdapter {
+public class ClientLogicHandler extends SimpleChannelInboundHandler<ByteBuf> {
+
+    protected ClientLogicHandler() {
+    }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        super.channelActive(ctx);
-    }
-
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ctx.write(msg);
-    }
-
-    @Override
-    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        ctx.flush();
+        ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!",
+                CharsetUtil.UTF_8));
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        System.out.println("Unexpected exception from downstream");
+        cause.printStackTrace();
         ctx.close();
+    }
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
+        System.out.println("Client received: " +msg.toString(CharsetUtil.UTF_8));
     }
 }
