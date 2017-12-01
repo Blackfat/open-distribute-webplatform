@@ -34,8 +34,8 @@ public class Server {
                         }
                     });
 
-            ChannelFuture future = b.bind(8080).sync();
-            future.channel().closeFuture().sync();
+            ChannelFuture future = b.bind(8080).sync();//配置完成，绑定server，并通过sync同步方法阻塞直到绑定成功
+            future.channel().closeFuture().sync();//应用程序会一直等待，直到channel关闭
         }catch(Exception e){
                 e.printStackTrace();
         }finally{
