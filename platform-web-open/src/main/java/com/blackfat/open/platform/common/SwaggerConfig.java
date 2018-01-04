@@ -12,7 +12,6 @@ import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 /**
  * SwaggerConfig 总容器配置类
  */
-@Configuration
 @EnableSwagger
 public class SwaggerConfig {
 
