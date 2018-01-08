@@ -37,8 +37,9 @@
         <platform-service-base.version>1.0.0-SNAPSHOT</platform-service-base.version>
         <platform-config.version>1.0.0-SNAPSHOT</platform-config.version>
 		<platform-util.version>1.0.0-SNAPSHOT</platform-util.version>
-		<platform-api-message>1.0.0-SNAPSHOT</platform-api-message>
-		<platform-service-message>1.0.0-SNAPSHOT</platform-service-message>
+		<platform-api-message.version>1.0.0-SNAPSHOT</platform-api-message.version>
+		<platform-service-message.version>1.0.0-SNAPSHOT</platform-service-message.version>
+		<platform-dubbo-filter.version>1.0.0-SNAPSHOT</platform-dubbo-filter.version>
 	</properties>
 
 
@@ -52,6 +53,7 @@
 		<module>../platform-api-message</module>
 		<module>../platform-service-message</module>
 		<module>../platform-message-notify</module>
+		<module>../platform-dubbo-filter</module>
 	</modules>
 
 	<dependencyManagement>
@@ -84,14 +86,20 @@
             <dependency>
                 <groupId>com.blackfat.common</groupId>
                 <artifactId>platform-api-message</artifactId>
-                <version>${platform-api-message}</version>
+                <version>${platform-api-message.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.blackfat.common</groupId>
                 <artifactId>platform-service-message</artifactId>
-                <version>${platform-service-message}</version>
+                <version>${platform-service-message.version}</version>
             </dependency>
+
+			<dependency>
+				<groupId>com.blackfat.common</groupId>
+				<artifactId>platform-dubbo-filter</artifactId>
+				<version>${platform-dubbo-filter.version}</version>
+			</dependency>
 		  	
 		  	<!--platform end   -->
 		    

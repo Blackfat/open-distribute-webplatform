@@ -1,0 +1,1 @@
+dubboTraceFilter=com.blackfat.dubbo.filter.DubboTraceFilter
