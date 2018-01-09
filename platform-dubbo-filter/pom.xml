@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.blackfat.common</groupId>
-    <artifactId>platform.dubbo.filter</artifactId>
+    <artifactId>platform-dubbo-filter</artifactId>
 
     <dependencies>
         <dependency>

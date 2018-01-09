@@ -29,6 +29,11 @@
 		  		<groupId>com.blackfat.common</groupId>
 		  		<artifactId>platform-config</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.blackfat.common</groupId>
+			<artifactId>platform-dubbo-filter</artifactId>
+		</dependency>
 	 
 		<dependency>
 			<groupId>org.springframework</groupId>

@@ -28,7 +28,7 @@ public class DubboTraceFilter implements Filter {
             filterReq.setMethodName(invocation.getMethodName());
             filterReq.setArgs(invocation.getArguments());
 
-            logger.debug("dubbo请求数据:" + JSON.toJSONString(filterReq));
+            logger.info("dubbo请求数据:" + JSON.toJSONString(filterReq));
 
             Result result = invoker.invoke(invocation);
             if (result.hasException() && invoker.getInterface() != GenericService.class) {
@@ -40,7 +40,7 @@ public class DubboTraceFilter implements Filter {
                 filterRsp.setMethodName(invocation.getMethodName());
                 filterRsp.setInterfaceName(invocation.getInvoker().getInterface().getName());
                 filterRsp.setArgs(new Object[]{result.getValue()});
-                logger.debug("dubbo返回数据" + JSON.toJSONString(filterRsp));
+                logger.info("dubbo返回数据" + JSON.toJSONString(filterRsp));
 
             }
             return result;

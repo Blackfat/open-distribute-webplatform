@@ -22,6 +22,10 @@
             <groupId>com.blackfat.common</groupId>
             <artifactId>platform-config</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.blackfat.common</groupId>
+            <artifactId>platform-service-base</artifactId>
+        </dependency>
 
         <!-- spring start -->
         <dependency>

@@ -20,6 +20,8 @@
                                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+    <import resource="classpath:spring/spring-open-consumer.xml"/>
+
 
 
 

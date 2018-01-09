@@ -2,17 +2,17 @@
 <configuration>
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d [%t] %-5p [%c] - %m%n</pattern>
         </encoder>
     </appender>
 
     <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/tmp/logs/base/service-base.log</file>
+        <file>/data/logs/platform/service-base.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/tmp/logs/base/service-base.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>/data/logs/platform/service-base.%d{yyyy-MM-dd}.log</fileNamePattern>
         </rollingPolicy>
         <encoder>
-            <pattern>%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d [%t] %-5p [%c] - %m%n</pattern>
         </encoder>
     </appender>
 
@@ -22,7 +22,7 @@
     <!--log4jdbc -->
     <logger name="jdbc.sqltiming" level="INFO"/>
 
-    <root level="WARN">
+    <root level="INFO">
         <appender-ref ref="console" />
         <appender-ref ref="rollingFile" />
     </root>

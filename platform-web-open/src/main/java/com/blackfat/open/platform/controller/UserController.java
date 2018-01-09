@@ -1,8 +1,10 @@
 package com.blackfat.open.platform.controller;
 
 import com.blackfat.open.platform.domain.User;
+import com.blacktfat.base.service.IHelloWorldService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +22,15 @@ public class UserController {
 
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
 
+    @Autowired
+    private IHelloWorldService helloService;
+
+
     @ApiOperation(value="获取用户列表", notes="")
     @RequestMapping(value="/" , method = RequestMethod.GET)
     @ResponseBody
     public List<User> getUserList(){
+        helloService.helloWorld();
         List<User> list = new ArrayList<User>(users.values());
         return list;
     }
