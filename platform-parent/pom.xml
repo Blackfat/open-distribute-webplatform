@@ -261,6 +261,12 @@
 				<groupId>com.101tec</groupId>
 				<artifactId>zkclient</artifactId>
 				<version>${zkclient.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.jboss.netty</groupId>

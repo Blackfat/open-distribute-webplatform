@@ -37,8 +37,8 @@
         <property name="jmsTemplate" ref="notifyJmsTemplate"/>
     </bean>
 
-
-    <jms:listener-container concurrency="9">
+    <!-- 每个listener只有一个的并发数，可以保证消息有序的一笔一笔消费-->
+    <jms:listener-container concurrency="1">
         <jms:listener destination="black-queue" ref="notifyMessageListener"/>
     </jms:listener-container>
 </beans>
