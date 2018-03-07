@@ -32,6 +32,8 @@
         <joda-time.version>2.3</joda-time.version>
         <dozer.version>5.5.1</dozer.version>
         <assertj.version>1.7.0</assertj.version>
+		<spring-data-redis.version>1.6.0.RELEASE</spring-data-redis.version>
+		<redis.clients.version>2.9.0</redis.clients.version>
         
         <platform-api-base.version>1.0.0-SNAPSHOT</platform-api-base.version>
         <platform-service-base.version>1.0.0-SNAPSHOT</platform-service-base.version>
@@ -54,7 +56,8 @@
 		<module>../platform-service-message</module>
 		<module>../platform-message-notify</module>
 		<module>../platform-dubbo-filter</module>
-	</modules>
+        <module>../platform-redis</module>
+    </modules>
 
 	<dependencyManagement>
 		<dependencies>
@@ -210,6 +213,16 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-instrument-tomcat</artifactId>
 				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-redis</artifactId>
+				<version>${spring-data-redis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>${redis.clients.version}</version>
 			</dependency>
 			<!-- spring end -->
 
