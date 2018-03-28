@@ -18,7 +18,7 @@ public class CuratorTest {
     * sessionTimeoutMs：会话超时时间，如上是50s，默认是60s
     * retryPolicy：失败重试策略 baseSleepTimeMs：初始的sleep时间，用于计算之后的每次重试的sleep时间 maxRetries：最大重试次数
     * */
-    public static CuratorFramework client = CuratorFrameworkFactory.builder().connectString("106.14.46.227:2181").sessionTimeoutMs(50000)
+    public static CuratorFramework client = CuratorFrameworkFactory.builder().connectString("101.132.177.27:2181").sessionTimeoutMs(50000)
             .connectionTimeoutMs(30000).retryPolicy(new ExponentialBackoffRetry(1000, 3)).build();
 
 
@@ -46,11 +46,11 @@ public class CuratorTest {
     public static void main(String[] args) throws Exception {
         client.start();
 
-       // client.create().forPath("/China","ni hao".getBytes());
+        client.create().forPath("/China","ni hao".getBytes());
 
-      //  client.setData().forPath("/China", "hello".getBytes());
+        client.setData().forPath("/China", "hello".getBytes());
 
-       //  client.checkExists().forPath("/China");
+         client.checkExists().forPath("/China");
 
     }
 }
