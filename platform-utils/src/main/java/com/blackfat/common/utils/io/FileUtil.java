@@ -343,6 +343,56 @@ public class FileUtil {
     public static String getFileExtension(String fullName) {
         return Files.getFileExtension(fullName);
     }
+
+
+    /**
+     * 删除文件指定行
+     * @param file
+     * @param clearHeaderLins
+     * @return
+     */
+    public static boolean removeFileHeaderLines(File file, int clearHeaderLins){
+        Validate.notNull(file);
+        Validate.isTrue(clearHeaderLins > 0);
+        RandomAccessFile accessFile = null;
+        try{
+            accessFile = new RandomAccessFile(file, "rw");
+            // 游标
+            long writePosition = accessFile.getFilePointer();
+
+            for (int i = 0 ; i < clearHeaderLins; i++){
+                String line = accessFile.readLine();
+                if(line == null){
+                    break;
+                }
+            }
+
+            long readPosition = accessFile.getFilePointer();
+            byte[] buffer = new byte[1024];
+            int num;
+
+            while (-1 != (num = accessFile.read(buffer))) {
+                accessFile.seek(writePosition);
+                accessFile.write(buffer, 0, num);
+                readPosition += num;
+                writePosition += num;
+                accessFile.seek(readPosition);
+            }
+            accessFile.setLength(writePosition);
+            return true;
+        }catch (Exception e){
+             return false;
+        }finally {
+            IOUtil.closeQuietly(accessFile);
+        }
+
+    }
+
+
+
+
+
+
 }
 
 
