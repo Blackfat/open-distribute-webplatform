@@ -1,4 +1,4 @@
-package com.blackfat.common.utils.collection.concurrent;
+package com.blackfat.common.concurrent;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;

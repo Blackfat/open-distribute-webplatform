@@ -1,4 +1,4 @@
-package com.blackfat.common.utils.collection.concurrent;
+package com.blackfat.common.concurrent;
 
 import com.blackfat.common.utils.number.RandomUtil;
 
