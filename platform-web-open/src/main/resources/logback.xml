@@ -8,8 +8,12 @@
 
     <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>/data/logs/platform/web-open.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/data/logs/platform/web-open.%d{yyyy-MM-dd}.log</fileNamePattern>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>/data/logs/platform/web-open.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!--单个日志文件大小-->
+            <maxFileSize>100MB</maxFileSize>
+            <!--日志文件保留天数-->
+            <maxHistory>60</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>%d [%t] %-5p [%c] - %m%n</pattern>
