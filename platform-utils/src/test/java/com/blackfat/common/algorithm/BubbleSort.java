@@ -7,6 +7,12 @@ import java.util.Arrays;
  * @desc 冒泡排序
  * @create 2018/9/11-13:38
  */
+
+/*
+* 有序度：有序元素的个数
+* 满有序度=有序度+逆序度
+*排序的过程就是一种增加有序度，减少逆序度的过程，最后达到满有序度
+* */
 public class BubbleSort {
 
     public static void sort(int[] arr) {
