@@ -9,18 +9,16 @@
      http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 	<!--提供	应用方信息，方便计算依赖关系-->
-	<dubbo:application name="platform-open"/>
+	<dubbo:application name="platform-service-activity"/>
 
 	<dubbo:registry protocol="zookeeper" address="101.132.177.27:2181"/>
 
-	<dubbo:reference interface="com.blacktfat.base.service.IHelloWorldService" id="helloService"/>
-	
-	<dubbo:reference interface="com.blackfat.api.activity.service.StockServiceApi" id="stockService"/>
+	<dubbo:protocol name="dubbo" port="20880" threads="200"/>
 
-	<dubbo:reference interface="com.blackfat.api.activity.service.OrderServiceApi" id="orderService"/>
+	<dubbo:provider timeout="15000" executes="200" />
 
-
-
+	<!-- 声明需要暴露的接口 -->
+	<dubbo:annotation package="com.blackfat.service.activity.api.impl" />
 
 	
 </beans>

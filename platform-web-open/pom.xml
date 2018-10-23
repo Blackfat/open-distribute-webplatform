@@ -24,7 +24,11 @@
         </dependency>
         <dependency>
             <groupId>com.blackfat.common</groupId>
-            <artifactId>platform-service-base</artifactId>
+            <artifactId>platform-api-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.blackfat.common</groupId>
+            <artifactId>platform-api-activity</artifactId>
         </dependency>
 
         <!-- spring start -->
