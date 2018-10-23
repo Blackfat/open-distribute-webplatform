@@ -1,5 +1,7 @@
 package com.blackfat.service.activity.dao;
 
+import com.blackfat.api.activity.entity.StockOrder;
+
 /**
  * @author wangfeiyang
  * @desc
@@ -7,4 +9,5 @@ package com.blackfat.service.activity.dao;
  */
 public interface OrderMapper {
 
+    int insertSelective(StockOrder order);
 }

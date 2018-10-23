@@ -14,6 +14,6 @@ public interface OrderServiceApi {
      * @return
      *  订单ID
      */
-    int createWrongOrder(int sid) throws Exception;
+    int createOptimisticOrder(int sid) throws Exception;
 
 }

@@ -2,6 +2,8 @@ package com.blackfat.service.activity.api.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.blackfat.api.activity.service.OrderServiceApi;
+import com.blackfat.service.activity.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author wangfeiyang
@@ -11,8 +13,11 @@ import com.blackfat.api.activity.service.OrderServiceApi;
 @Service
 public class OrderServiceApiImpl implements OrderServiceApi {
 
+    @Autowired
+    private OrderService orderService;
+
     @Override
-    public int createWrongOrder(int sid) throws Exception {
-        return 0;
+    public int createOptimisticOrder(int sid) throws Exception {
+        return orderService.createOptimisticOrder(sid);
     }
 }

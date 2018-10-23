@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
+<mapper namespace="com.blackfat.service.activity.dao.StockMapper">
+    <update id="updateByOptimistic" parameterType="com.blackfat.api.activity.entity.Stock">
+        update stock
+        <set>
+            sale = sale + 1,
+            version = version + 1,
+        </set>
+
+        WHERE id = #{id,jdbcType=INTEGER}
+        AND version = #{version,jdbcType=INTEGER}
+
+    </update>
+
+    <sql id="Base_Column_List" >
+        id, name, count, sale, version
+    </sql>
+
+    <select id="selectByPrimaryKey" resultType="com.blackfat.api.activity.entity.Stock" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from stock
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
 
 </mapper>
