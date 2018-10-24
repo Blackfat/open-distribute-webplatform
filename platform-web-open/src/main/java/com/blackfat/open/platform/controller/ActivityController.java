@@ -2,6 +2,9 @@ package com.blackfat.open.platform.controller;
 
 import com.blackfat.api.activity.service.OrderServiceApi;
 import com.blackfat.api.activity.service.StockServiceApi;
+import com.crossoverjie.distributed.annotation.CommonLimit;
+import com.crossoverjie.distributed.annotation.ControllerLimit;
+import com.crossoverjie.distributed.annotation.SpringControllerLimit;
 import com.wordnik.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,4 +51,24 @@ public class ActivityController
         }
         return String.valueOf(id);
     }
+
+    /**
+     * 乐观锁更新库存 限流
+     * @param sid
+     * @return
+     */
+    @SpringControllerLimit
+    @RequestMapping(value = "/createOptimisticLimitOrder/{sid}",method = RequestMethod.GET)
+    @ResponseBody
+    public String createOptimisticLimitOrder(@PathVariable int sid) {
+        logger.info("sid=[{}]", sid);
+        int id = 0;
+        try {
+            id = orderService.createOptimisticOrder(sid);
+        } catch (Exception e) {
+            logger.error("Exception",e);
+        }
+        return String.valueOf(id);
+    }
+
 }

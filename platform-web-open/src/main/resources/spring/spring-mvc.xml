@@ -34,10 +34,19 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <!--拦截器-->
+    <mvc:interceptors>
+        <!-- 多个拦截器，按顺序执行 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/> <!-- 表示拦截所有的url包括子url路径 -->
+            <bean class="com.crossoverjie.distributed.intercept.SpringMVCIntercept"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--将静态资源的处理经由Spring MVC框架交回Web应用服务器处理-->
     <mvc:default-servlet-handler />
 
-    <bean class="com.blackfat.open.platform.common.SwaggerConfig"/>
+    <bean class="com.blackfat.open.platform.config.SwaggerConfig"/>
 
 
 </beans>
