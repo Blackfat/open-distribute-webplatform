@@ -40,6 +40,9 @@ public class JvmTest {
 
      -Xloggc:  生成GC日志地址
 
+     -XX:+PrintHeapAtGC：在GC的时候打印堆的信息
+
+
     *
     * */
     public static void main(String[] args) throws InterruptedException {
