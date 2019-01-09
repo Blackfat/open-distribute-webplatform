@@ -299,6 +299,13 @@
             <artifactId>junit</artifactId>
         </dependency>
         <!--test begin-->
+
+        <!--sentinel -->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-core</artifactId>
+            <version>1.4.0</version>
+        </dependency>
     </dependencies>
 
     <build>
