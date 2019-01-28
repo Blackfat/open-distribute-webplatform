@@ -1,5 +1,7 @@
 package com.blackfat.common.algorithm;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -186,6 +188,35 @@ public class BinaryTree {
         }
 
     }
+
+    // 按层遍历
+    public void levelOrder(Node node){
+        if(node == null){
+            return;
+        }
+        Queue<Node> stack = new LinkedList<Node>();
+        Queue<Node> tmp = new LinkedList();
+        stack.add(node);
+        while(!stack.isEmpty()){
+            Node current = stack.poll();
+            System.out.printf("%s ", current.data);
+            if(current.left != null){
+                tmp.add(current.left);
+            }
+            if(current.right != null){
+                tmp.add(current.right);
+            }
+            if(stack.isEmpty()){
+                while(!tmp.isEmpty()){
+                    stack.add(tmp.poll());
+                }
+            }
+        }
+
+    }
+
+
+
 
 
 

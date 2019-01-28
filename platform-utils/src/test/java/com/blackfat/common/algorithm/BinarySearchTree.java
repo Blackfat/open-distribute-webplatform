@@ -1,5 +1,8 @@
 package com.blackfat.common.algorithm;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @author wangfeiyang
  * @desc   二叉查找树
@@ -24,6 +27,10 @@ public class BinarySearchTree {
             return left == null ? right == null : false;
         }
 
+    }
+
+    public Node getRoot(){
+        return tree;
     }
 
     /**
@@ -125,39 +132,7 @@ public class BinarySearchTree {
 
     }
 
-    /**
-     * 获取二叉树的深度
-     * @param node
-     * @return
-     */
-    public int getDep(Node node){
-        int level = 0;
-        int last = 0;//层队尾的下标
-        int front = -1;//层队头下标
-        int index = -1;// 数组元素下标
-        Node[] queue = new Node[100];
-        if(node == null){
-            return 0;
-        }
-        queue[++index] = node;
-        Node p;
-        while(front < index){
-            p = queue[++front];
-            if(p.left!=null){
-                queue[++index]=p.left;
-            }
-            if(p.right!=null){
-                queue[++index]=p.right;
-            }
-            if(front == last){
-                level++;
-                last = index;
-            }
 
-        }
-        return level;
-
-    }
 
 
 
