@@ -48,6 +48,22 @@ public class LinkedListAlgo {
         return false;
     }
 
+    // 有序链表合并 递归
+    public static Node mergeSortedListsWithRecurion(Node la, Node lb){
+        if (la == null) return lb;
+        if (lb == null) return la;
+
+        Node head = null;
+        if (la.data <= lb.data){
+            head = la;
+            head.next = mergeSortedLists(la.next, lb);
+        } else {
+            head = lb;
+            head.next = mergeSortedLists(la, lb.next);
+        }
+        return head;
+    }
+
     // 有序链表合并
     public static Node mergeSortedLists(Node la, Node lb) {
         if (la == null) return lb;
@@ -86,6 +102,8 @@ public class LinkedListAlgo {
     }
 
     // 删除倒数第K个结点
+    // 两个指针 fast ,slow ，fast从头开始遍历，当 fast 到达第 k 个节点时，slow 开始；
+    // 当 fast到达链表的最后一个节点时，slow 所指的节点则为链表中倒数第 k 个节点。
     public static Node deleteLastKth(Node list, int k) {
         Node fast = list;
         int i = 1;
@@ -96,6 +114,7 @@ public class LinkedListAlgo {
 
         if (fast == null) return list;
 
+        // 找到第k个节点
         Node slow = list;
         Node prev = null;
         while (fast.next != null) {
@@ -104,6 +123,7 @@ public class LinkedListAlgo {
             slow = slow.next;
         }
 
+        // 删除第k个节点
         if (prev == null) {
             list = list.next;
         } else {
