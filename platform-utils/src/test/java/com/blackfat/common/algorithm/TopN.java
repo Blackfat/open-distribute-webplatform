@@ -21,7 +21,7 @@ public class TopN {
 
 
     /**
-     * 构建堆(最小堆)
+     * 构建堆(最小堆)根结点的键值是所有堆结点键值中最小者，且每个结点的值都比其孩子的值小
      * @param n
      * @param data
      */
@@ -84,6 +84,8 @@ public class TopN {
 
         // 先构建n个数的小顶堆
         buildHeap(n, data);
+
+       print(data);
 
         // n往后的数进行调整
         for(int i = n; i < data.length; i++) {

@@ -215,6 +215,29 @@ public class BinaryTree {
 
     }
 
+    /**
+     * 翻转二叉树
+     * @param root
+     * @return
+     */
+    public Node invertTree(Node root) {
+        if(root == null)
+            return root;
+        Queue<Node> queue = new LinkedList<Node>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            Node node = queue.poll();
+            Node left = node.left;
+            node.left = node.right;
+            node.right = left;
+            if(node.left != null)
+                queue.add(node.left);
+            if(node.right != null)
+                queue.add(node.right);
+        }
+        return root;
+    }
+
 
 
 

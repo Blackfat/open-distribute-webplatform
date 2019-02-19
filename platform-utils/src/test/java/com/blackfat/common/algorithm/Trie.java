@@ -2,7 +2,7 @@ package com.blackfat.common.algorithm;
 
 /**
  * @author wangfeiyang
- * @desc 字段树
+ * @desc 字典树
  * @create 2019/2/1-14:04
  */
 public class Trie {
