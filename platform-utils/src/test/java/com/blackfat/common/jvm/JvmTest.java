@@ -34,6 +34,8 @@ public class JvmTest {
 
      -XX:+UseConcMarkSweepGC 使用CMS
 
+     -XX:+UseParNewGC 设置年轻代为多线程收集，可与CMS收集同时使用
+
      -XX:+HeapDumpOnOutOfMemoryError 出现 OOME 时生成堆 dump
 
      -XX:HeapDumpPath 生成堆文件地址
@@ -42,7 +44,11 @@ public class JvmTest {
 
      -XX:+PrintHeapAtGC：在GC的时候打印堆的信息
 
+     -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=60  CMS在对内存占用率达到60%的时候开始GC
 
+     --XX:+AlwaysPreTouch 系统启动时，内存就分配给JVM，而不是等JVM访问时才分配
+
+     -XX:PretenureSizeThreshold=2M 分配的对象超过设定值时不在Eden区分配，直接在Old区分配，但是这个参数只能CMS前提下才生效，ParallelGC不生效
     *
     * */
     public static void main(String[] args) throws InterruptedException {

@@ -48,8 +48,8 @@ public class CmsGcTest1 {
     * -XX:+UseConcMarkSweepGC -XX:+UseParNewGC
     * -XX:CMSInitiatingOccupancyFraction=60 -XX:+UseCMSInitiatingOccupancyOnly*/
     public static void main(String[] args) {
-        ygc(3);
-        cmsGc(1);
+//        ygc(3);
+//        cmsGc(1);
         ygc(2);
         cmsGc(2);
         // 在这里想怎么触发GC就怎么调用ygc()和cmsGc()两个方法
