@@ -10,6 +10,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 
+import java.io.IOException;
 import java.util.Collections;
 
 /**
@@ -81,6 +82,11 @@ public class RedisLock {
             ((Jedis) connection).close();
         }else {
             result = ((JedisCluster) connection).set(lockPrefix + key, value, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, expireTime);
+            try {
+                ((JedisCluster) connection).close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         if (LOCK_MSG.equals(result)) {

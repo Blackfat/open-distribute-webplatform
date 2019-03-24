@@ -99,6 +99,11 @@ public class RedisLimit {
             ((Jedis) connection).close();
         }else {
             result = ((JedisCluster) connection).eval(script, Collections.singletonList(key), Collections.singletonList(String.valueOf(limit)));
+            try {
+                ((JedisCluster) connection).close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return result;
     }
