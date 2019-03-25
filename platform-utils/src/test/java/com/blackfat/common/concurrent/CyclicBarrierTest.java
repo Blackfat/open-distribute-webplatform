@@ -13,7 +13,7 @@ import java.util.concurrent.CyclicBarrier;
 public class CyclicBarrierTest {
 
     @Test
-    public void CyclicBarrierTest(){
+    public void CyclicBarrierTest() throws InterruptedException {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(5, new Runnable() {
             @Override
             public void run() {
@@ -27,6 +27,16 @@ public class CyclicBarrierTest {
         }
 
 
+        Thread.sleep(5000);
+
+
+        cyclicBarrier.reset();
+        System.out.println("CyclicBarrier进行复用");
+
+
+        for (int i = 0; i < 5; ++i) {
+            new Thread(new Task(cyclicBarrier)).start();
+        }
 
 
 
