@@ -4,7 +4,9 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -16,16 +18,17 @@ import java.util.concurrent.atomic.AtomicLong;
 public class CacheTest {
 
     @Test
-    public void  CacheLoaderTest(){
+    public void  CacheLoaderTest() throws ExecutionException {
        LoadingCache cache = CacheBuilder.newBuilder().maximumSize(100)
                .expireAfterWrite(10, TimeUnit.MINUTES)
                // 当获取的缓存之不存在或者过期，进行缓存值的重新计算
                .build(new CacheLoader<Long, AtomicLong>() {
                    @Override
                    public AtomicLong load(Long key) throws Exception {
-                       return null;
+                       return new AtomicLong(0);
                    }
                });
+
     }
 
 

@@ -39,8 +39,8 @@ class Workman {
     private final Condition empty = lock.newCondition();
 
     public void produce(Object o){
+        lock.lock();
         try{
-            lock.lock();
             while(productList.size() == MAX_SIZE){
                 System.out.println("仓库已满，暂时不能生产");
                 try {
@@ -58,8 +58,8 @@ class Workman {
     }
 
     public void consume(){
+        lock.lock();
         try{
-            lock.lock();
             while(productList.isEmpty()){
                 System.out.println("仓库已空，暂时不能继续消费");
                 try {

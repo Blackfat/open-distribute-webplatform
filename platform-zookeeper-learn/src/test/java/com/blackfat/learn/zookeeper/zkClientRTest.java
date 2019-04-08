@@ -1,10 +1,9 @@
 package com.blackfat.learn.zookeeper;
 
 import com.sun.corba.se.impl.orbutil.ObjectUtility;
-import org.I0Itec.zkclient.IZkChildListener;
-import org.I0Itec.zkclient.ZkClient;
-import org.I0Itec.zkclient.ZkConnection;
+import org.I0Itec.zkclient.*;
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.Watcher;
 import org.junit.Test;
 
 import java.util.List;
@@ -63,8 +62,38 @@ public class zkClientRTest {
         zkClient.subscribeChildChanges(path, new IZkChildListener() {
             @Override
             public void handleChildChange(String parentPath, List<String> currentChilds) throws Exception {
-                System.out.println("parentPath: " + parentPath);
-                System.out.println("currentChilds: " + currentChilds);
+                System.err.println("parentPath: " + parentPath);
+                System.err.println("currentChilds: " + currentChilds);
+            }
+        });
+
+        zkClient.subscribeDataChanges(path + "/children1", new IZkDataListener(){
+            @Override
+            public void handleDataChange(String dataPath, Object data) throws Exception {
+                System.err.println("dataPath change date:"+data);
+            }
+
+            @Override
+            public void handleDataDeleted(String dataPath) throws Exception {
+
+            }
+        });
+
+        zkClient.subscribeStateChanges(new IZkStateListener(){
+
+            @Override
+            public void handleStateChanged(Watcher.Event.KeeperState state) throws Exception {
+
+            }
+
+            @Override
+            public void handleNewSession() throws Exception {
+
+            }
+
+            @Override
+            public void handleSessionEstablishmentError(Throwable error) throws Exception {
+
             }
         });
 
@@ -74,11 +103,16 @@ public class zkClientRTest {
 
         zkClient.create(path + "/children1","child1 node", CreateMode.EPHEMERAL);
 
-        Thread.sleep(3000);
-
-        zkClient.create(path + "/children2","child2 node", CreateMode.EPHEMERAL);
 
         Thread.sleep(3000);
+
+        zkClient.writeData(path + "/children1","child1 node change");
+
+//        Thread.sleep(3000);
+//
+//        zkClient.create(path + "/children2","child2 node", CreateMode.EPHEMERAL);
+//
+//        Thread.sleep(3000);
 
         zkClient.close();
     }
