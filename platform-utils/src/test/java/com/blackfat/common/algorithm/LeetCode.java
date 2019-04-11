@@ -243,5 +243,54 @@ public class LeetCode {
     }
 
 
+    /**
+     * 125
+     * @param s
+     * @return
+     */
+    public static boolean isPalindrome(String s){
+        if(s == null || s.length() == 0){
+            return true;
+        }
+        int left =  0;
+        int right = s.length() -1;
+        while(left < right){
+            if(!Character.isLetterOrDigit(s.charAt(left))){
+                left ++;
+            }else if(!Character.isLetterOrDigit(s.charAt(right))){
+                right --;
+            }else{
+                if(Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right)))
+                    return false;
+                left++;
+                right--;
+            }
+        }
+      return  true;
+    }
+
+
+    /**
+     *
+     * @param str
+     * @return
+     */
+    public static int StrToInt(String str){
+        if (str == null || str.length() == 0)
+            return 0;
+        boolean isNegative = str.charAt(0) == '-';
+        int ret = 0;
+        for (int i = 0; i < str.length(); i++){
+            char c = str.charAt(i);
+            if (i == 0 && (c == '+' || c == '-'))  /* 符号判定 */
+                continue;
+            if (c < '0' || c > '9')                /* 非法输入 */
+                return 0;
+            ret = ret * 10 + (c - '0');
+        }
+        return isNegative ? -ret : ret;
+    }
+
+
 
 }
