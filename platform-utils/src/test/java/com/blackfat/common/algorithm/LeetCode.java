@@ -3,8 +3,7 @@ package com.blackfat.common.algorithm;
 
 import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author wangfeiyang
@@ -289,6 +288,111 @@ public class LeetCode {
             ret = ret * 10 + (c - '0');
         }
         return isNegative ? -ret : ret;
+    }
+
+
+    /**
+     * 239
+     * @param nums
+     * @param k
+     * @return
+     */
+    public static int[] maxSlidingWindow(int[] nums, int k){
+        if (nums == null || nums.length < k || k == 0) return new int[0];
+        int[] res = new int[nums.length - k + 1];
+        //双端队列
+        Deque<Integer> deque = new LinkedList<>();
+        for (int i = 0; i < nums.length; i++) {
+            //在尾部添加元素，并保证左边元素都比尾部大
+            while (!deque.isEmpty() && nums[deque.getLast()] < nums[i]) {
+                deque.removeLast();
+            }
+            deque.addLast(i);
+            //在头部移除元素
+            if (deque.getFirst() == i - k) {
+                deque.removeFirst();
+            }
+            //输出结果
+            if (i >= k - 1) {
+                res[i - k + 1] = nums[deque.getFirst()];
+            }
+        }
+        return res;
+    }
+
+    /**
+     * 3
+     * @param s
+     * @return
+     */
+    public static int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int res = 0;
+        int end=0,start=0;
+        Set<Character> set=new HashSet<>();
+        while(start<n && end<n){
+            if(set.contains(s.charAt(end))){
+                set.remove(s.charAt(start++));
+            }else{
+                set.add(s.charAt(end++));
+                res=Math.max(res,end-start);
+            }
+
+        }
+        return res;
+    }
+
+
+    /*
+    * 219
+    * */
+    public static  boolean containsNearbyDuplicate(int[] nums, int k) {
+        HashSet<Integer> set = new HashSet<>();
+        int i = 0;
+        while (i < k && i < nums.length) {//这个循环先往set里装k个元素
+            if (!set.add(nums[i])) {//如果装的时候就重复了，说明前k个元素就有重复的，直接返回true
+                return true;
+            }
+            i++;
+        }
+        while (i < nums.length) {//这个循环，对k~（nums.length-1）的元素逐个检查：是否和它前面的k个元素出现重复
+            if (!set.add(nums[i])) {//如果添加的时候出现重复，直接返回true
+                return true;
+            }
+            set.remove(nums[i - k]);//然后再移除一个索引为（i-k）的元素。
+            i++;
+        }
+        return false;
+    }
+
+    /**
+     * 209
+     * @param s
+     * @param nums
+     * @return
+     */
+    public static int minSubArrayLen(int s, int[] nums) {
+        int l= 0,r = -1;    // nums[l...r]为我们的滑动窗口
+        int sum = 0;
+        int result = nums.length + 1;
+        while (l < nums.length){ // 窗口的左边界在数组范围内,则循环继续
+
+            if( r+1 <nums.length && sum < s){
+                r++;
+                sum += nums[r];
+            }else { // r已经到头 或者 sum >= s
+                sum -= nums[l];
+                l++;
+            }
+
+            if(sum >= s){
+                result = (r-l+1) < result ? (r-l+1) : result ;
+            }
+        }
+        if(result==nums.length+1){
+            return 0;
+        }
+        return result;
     }
 
 
