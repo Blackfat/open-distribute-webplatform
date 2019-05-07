@@ -396,5 +396,81 @@ public class LeetCode {
     }
 
 
+    /**
+     * 347
+     * @param nums
+     * @param k
+     * @return
+     */
+    public List<Integer> topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int num : nums)
+        {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        PriorityQueue<Freq> queue = new PriorityQueue<>();
+        for (Integer key:map.keySet()){
+            if (queue.size() < k){
+                queue.add(new Freq(key,map.get(key)));
+            }else if (map.get(key).compareTo(queue.peek().freq) > 0){
+                queue.poll();
+                queue.add(new Freq(key,map.get(key)));
+            }
+        }
+
+        List<Integer> list = new ArrayList<>();
+        while (!queue.isEmpty()){
+            list.add(queue.poll().e);
+        }
+
+        return list;
+    }
+
+    private class Freq implements Comparable<Freq> {
+        public int e, freq;
+
+        public Freq(int e, int freq) {
+            this.e = e;
+            this.freq = freq;
+        }
+
+        @Override
+        // 升序
+        public int compareTo(Freq o) {
+            if (this.freq < o.freq) {
+                return -1;
+            } else if (this.freq > o.freq) {
+                return 1;
+            } else
+                return 0;
+        }
+    }
+
+
+    /**
+     * 75
+     * @param nums
+     */
+    public static void sortColors(int[] nums) {
+        int p1 = -1, p2 = nums.length;
+        for (int i = 0; i < p2 ; i++) {
+            if(nums[i] == 0){
+                swap(nums, i, ++p1);
+            }else if(nums[i] == 2){
+                swap(nums, i--, --p2);
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+
+
 
 }
