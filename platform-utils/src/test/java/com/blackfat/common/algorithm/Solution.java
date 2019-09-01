@@ -6,6 +6,31 @@ package com.blackfat.common.algorithm;
  * @create 2018/9/19-9:54
  */
 public class Solution {
+
+    public static int Fibonacci1(int n) {
+        return (int)((Math.pow((1 + Math.sqrt(5)) / 2, n) - Math.pow((1 - Math.sqrt(5)) / 2, n)) /  Math.sqrt(5));
+    }
+
+
+    public static int pow( int x, int n){
+        int r = 1;
+        int v = x;
+        while(n > 0){
+           if(n % 2 == 1){
+               r = r * v;
+               n = n - 1;
+           }
+           v = v * v ;
+           n = n / 2;
+        }
+        return r;
+    }
+
+
+
+
+
+
     public static int Fibonacci(int n) {
         if (n < 1) {
             return 0;
@@ -66,6 +91,8 @@ public class Solution {
 
     public static void main(String[] args) {
         System.out.println(Fibonacci(10));
+        System.out.println(Fibonacci1(10));
+        System.out.println(pow(2, 4));
     }
 
 }
