@@ -8,7 +8,7 @@ import java.util.function.Supplier;
  * @create 2019-08-05 16:40
  * @since 1.0-SNAPSHOT
  */
-public class ThreadBeanHolder<T> {
+public class ThreadBeanHolder<T> implements BeanHolder<T> {
 
    private  Supplier<T> supplier;
 
@@ -18,6 +18,7 @@ public class ThreadBeanHolder<T> {
        this.supplier = supplier;
    }
 
+   @Override
    public T get(){
        T t = threadLocal.get();
        if(t != null){

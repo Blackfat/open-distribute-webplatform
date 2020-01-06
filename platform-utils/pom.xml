@@ -218,6 +218,33 @@
           <version>2.2.1</version>
       </dependency>
 
+
+      <dependency>
+          <groupId>com.alibaba.csp</groupId>
+          <artifactId>sentinel-core</artifactId>
+          <version>1.7.0</version>
+      </dependency>
+
+
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>1.18.8</version>
+          <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>com.ctrip.framework.apollo</groupId>
+          <artifactId>apollo-client</artifactId>
+          <version>1.2.0</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>fastjson</artifactId>
+          <version>1.2.62</version>
+      </dependency>
+
   </dependencies>
 
 
