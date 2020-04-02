@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
+import java.util.stream.IntStream;
 
 /**
  * @author wangfeiyang
@@ -30,5 +31,13 @@ public class LambdaTest {
         List list = Lists.newArrayList();
         Predicate<String> p = s -> list.add(s);
         Consumer<String> c = s -> list.add(s);
+    }
+
+    @Test
+    public void lamda3(){
+        IntStream.iterate(1, n -> n + 1)
+                .limit(10)
+                .forEach(System.out::println);
+
     }
 }
