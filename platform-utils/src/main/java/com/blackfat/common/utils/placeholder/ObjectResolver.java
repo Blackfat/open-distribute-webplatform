@@ -1,6 +1,10 @@
 package com.blackfat.common.utils.placeholder;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.PropertyResolver;
@@ -11,6 +15,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -198,5 +203,15 @@ public class ObjectResolver implements PropertyPlaceholderHelper.PlaceholderReso
         Map<String, String> params = Maps.newHashMap();
         params.put("name","james");
         System.out.println(PlaceholderHelpers.getSpring().replacePlaceholders(content, ObjectResolver.create(params)));
+
+
+        List<String> list = Lists.newArrayList("a","b","c");
+        JSONObject json = new JSONObject();
+        json.put("a",list);
+        System.out.println(json);
+
+
+        List<String> list1 = json.getObject("a",  new TypeReference<List<String>>(){} );
+        System.out.println(list1);
     }
 }
