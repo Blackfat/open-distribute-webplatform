@@ -120,7 +120,10 @@ public class IOBuffer {
 
     private static void fileChannelOperation() throws IOException {
         Files.deleteIfExists(Paths.get("dest.txt"));
-
+        /**
+         * 正常拷贝：  磁盘  -> 内核空间  - > user空间 -> 内核空间 -> 目的缓冲区
+         * 零拷贝方式 ：  磁盘  -> 内核空间  - >目的缓冲区
+         */
         FileChannel in = FileChannel.open(Paths.get("src.txt"), READ);
         FileChannel out = FileChannel.open(Paths.get("dest.txt"), CREATE, WRITE);
         in.transferTo(0, in.size(), out);
