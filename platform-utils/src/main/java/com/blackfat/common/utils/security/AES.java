@@ -24,9 +24,9 @@ public class AES {
 
     public static final byte keyStrSize = 16;
 
-    final String keyAlgorithm;
+    final String keyAlgorithm;//加密方式 AES或者DES
 
-    final String cipherAlgorithm;
+    final String cipherAlgorithm;// 加密器
 
     protected AES(String keyAlgorithm, String cipherAlgorithm) {
         this.keyAlgorithm = keyAlgorithm;
@@ -89,6 +89,12 @@ public class AES {
         return randomSecret(null);
     }
 
+    /**
+     * 生产密钥
+     * @param seed 种子
+     * @return
+     * @throws GeneralSecurityException
+     */
     public SecretKey randomSecret(String seed) throws GeneralSecurityException {
         KeyGenerator kg = KeyGenerator.getInstance(keyAlgorithm);
         if(seed == null){
