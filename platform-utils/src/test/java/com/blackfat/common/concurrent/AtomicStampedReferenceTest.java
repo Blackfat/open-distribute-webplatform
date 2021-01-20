@@ -14,14 +14,14 @@ public class AtomicStampedReferenceTest {
 
 
     public static void main(String[] args) {
-        for (int i = 0; i <5 ; i++) {
+        for (int i = 0; i <10 ; i++) {
             final int version = reference.getStamp();
             new Thread(() ->{
                 Integer  integer = reference.getReference();
                 if(reference.compareAndSet(integer,integer + 10, version, version+1)){
-                    System.out.println(Thread.currentThread().getName()+"--------更新成功！");
+                    System.out.println(Thread.currentThread().getName()+"--------更新成功！"+reference.getReference());
                 }else{
-                    System.out.println(Thread.currentThread().getName()+"--------更新失败!");
+                    System.out.println(Thread.currentThread().getName()+"--------更新失败!"+reference.getReference());
                 }
             }).start();
         }
