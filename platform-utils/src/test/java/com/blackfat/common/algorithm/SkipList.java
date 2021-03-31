@@ -23,9 +23,9 @@ public class SkipList {
      * 跳表头结点。
      * 类似链表里的带头链表，哨兵结点，本身不存储数据，下一跳指向各层索引的头结点。
      */
-    private Node head = new Node();  // 带头链表
+    private Node head;  // 带头链表
 
-    private Random r = new Random();
+    private Random r;
 
     public SkipList() {
         head = new Node();

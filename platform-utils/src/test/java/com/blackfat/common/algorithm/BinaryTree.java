@@ -11,9 +11,10 @@ import java.util.Stack;
  */
 /*
 *
-*  A binary search tree is a
+* A binary search tree is a
 * sorted binary tree, where value of a node is greater than or equal to its
 * left the child and less than or equal to its right child.
+* 二叉查找树要求，在树中的任意一个节点，其左子树中的每个节点的值，都要小于这个节点的值，而右子树节点的值都大于这个节点的值
 * */
 public class BinaryTree {
 

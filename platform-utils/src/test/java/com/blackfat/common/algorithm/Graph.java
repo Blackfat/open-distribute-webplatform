@@ -21,6 +21,7 @@ public class Graph {
         }
     }
 
+    // 无向图一条边存两次
     public void addEdge(int s, int t){
         adj[s].add(t);
         adj[t].add(s);
@@ -28,7 +29,8 @@ public class Graph {
 
 
     /**
-     * 广度优先
+     * 广度优先BFS 优先一般是解决最短路径问题
+     * 广度优先搜索会根据离起点的距离，按照从近到远的顺序对各节点进行搜索
      * @param s
      * @param t
      */
@@ -71,13 +73,15 @@ public class Graph {
     boolean found = false; // 全局变量或者类成员变量
 
     /**
-     * 深度遍历
+     * 深度遍历DFS 优先一般是解决连通性问题
+     * 深度优先搜索会沿着一条路径不断往下搜索直到不能再继续为止，然后再折返，开始搜索下一条路径。
      * @param s
      * @param t
      */
     public void dfs(int s, int t) {
         found = false;
         boolean[] visited = new boolean[v];
+        visited[s]=true;  // 已经被访问的节点
         int[] prev = new int[v];
         for (int i = 0; i < v; ++i) {
             prev[i] = -1;

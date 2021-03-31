@@ -9,6 +9,7 @@ public class ArrayQueue {
 
     private String[] items;
     private int n= 0;
+    // head表示队头下标，tail表示队尾下标
     private int head = 0;
     private int tail = 0;
 

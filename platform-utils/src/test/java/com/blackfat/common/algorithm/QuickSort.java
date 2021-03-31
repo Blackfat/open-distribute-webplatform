@@ -18,7 +18,7 @@ public class QuickSort {
             return;
         }
 
-        int pivotIndex = partition(arr, startIndex, endIndex);
+        int pivotIndex = partition1(arr, startIndex, endIndex);
 
 
         // 根据基准元素，分成两部分递归排序
@@ -26,6 +26,27 @@ public class QuickSort {
         sort(arr, pivotIndex + 1, endIndex);
 
     }
+
+    private static int partition1(int[] arr, int startIndex, int endIndex){
+          int pivot = arr[endIndex];
+          int i = startIndex;
+          for(int j = startIndex; j < endIndex; j++){
+              if(arr[j] < pivot){
+                 swap(arr, i ,j);
+                  i++;
+              }
+
+          }
+          swap(arr, i , endIndex);
+          return  i;
+    }
+
+    public static void swap(int[] arr,int i,int j){
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+
 
     private static int partition(int[] arr, int startIndex, int endIndex) {
         // 取第一个位置的元素作为基准元素

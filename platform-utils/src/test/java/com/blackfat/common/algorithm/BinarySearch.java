@@ -81,7 +81,7 @@ public class BinarySearch {
 
 
     /**
-     *  查找最后一个大于指定值的元素
+     *  查找最后一个小于等于给定值的元素
      * @param a
      * @param n
      * @param value
