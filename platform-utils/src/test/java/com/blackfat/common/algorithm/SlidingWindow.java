@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
  * @author wangfeiyang
- * @Description leetcode 76
+ * @Description leetcode 76 567 3
  * @create 2021-03-31 13:40
  * @since 1.0-SNAPSHOT
  */
@@ -108,6 +108,28 @@ public class SlidingWindow {
         return  false;
     }
 
+
+    public Integer lengthOfLongestSubstring(String s){
+        int sLen = s.length();
+        if(sLen == 0){
+            return  0;
+        }
+        int left = 0, right = 0;
+        int res = 0;
+        while(right < sLen){
+            char c = s.charAt(right);
+            right++;//右指针向右滑
+            window.put(c, window.getOrDefault(c, 0) + 1);
+            while(window.get(c) > 1){
+                char d = s.charAt(left);
+                left++;
+                window.put(d, window.getOrDefault(c, 0) - 1);
+            }
+            res =Math.max(res, right -left);
+        }
+        return  res;
+    }
+
     public static void main(String[] args) {
         SlidingWindow slidingWindow = new SlidingWindow();
 //        String s = "EBBANCF";
@@ -116,6 +138,7 @@ public class SlidingWindow {
         String s1 = "eidboaoo";
         String t1 = "ab";
         System.out.println(slidingWindow.checkInclusion(s1, t1));
+        System.out.println(slidingWindow.lengthOfLongestSubstring("abcabcbb"));
     }
 
 }

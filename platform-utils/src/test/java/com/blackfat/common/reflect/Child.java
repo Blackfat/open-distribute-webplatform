@@ -20,7 +20,7 @@ public class Child extends Parent<String> {
     public static void main(String[] args) {
         Child child = new Child();
         //synthetic 代表由编译器生成的不可见代码，bridge 代表这是泛型类型擦除后生成的桥接代码
-        Arrays.stream(child.getClass().getMethods()).filter(method -> method.getName().equals("setValue")).forEach(method -> {
+        Arrays.stream(child.getClass().getMethods()).filter(method -> method.getName().equals("setValue") && !method.isBridge()).forEach(method -> {
             try {
                 method.invoke(child, "test");
             } catch (Exception e) {
