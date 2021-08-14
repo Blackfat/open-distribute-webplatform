@@ -27,6 +27,15 @@ public class QuickSort {
 
     }
 
+    /**
+     *
+     * 2,1,5,4,3
+     *
+     * @param arr
+     * @param startIndex
+     * @param endIndex
+     * @return
+     */
     private static int partition1(int[] arr, int startIndex, int endIndex){
           int pivot = arr[endIndex];
           int i = startIndex;
@@ -84,7 +93,7 @@ public class QuickSort {
 
 
     public static void main(String[] args) {
-        int[] array = new int[]{5, 8, 6, 3, 9, 2, 1, 7};
+        int[] array = new int[]{2,1,5,4,3};
 
         sort(array,0, array.length -1);
 

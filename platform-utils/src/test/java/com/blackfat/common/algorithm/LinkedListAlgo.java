@@ -12,6 +12,41 @@ package com.blackfat.common.algorithm;
  */
 public class LinkedListAlgo {
 
+    /**
+     * 链表中的节点每k个一组翻转
+     * @param head
+     * @param k
+     * @return
+     */
+    public Node reverseKGroup (Node head, int k){
+        if(head == null || head.next == null || k == 1){
+            return  head;
+        }
+        Node res = new Node(0,null);
+        res.next = head;
+        int length = 0;
+        Node    pre = res,
+                cur = head,
+                temp = null;
+        Node node = head;
+        while(node!=null){
+            length++;
+            node = node.next;
+        }
+        for(int i = 0; i < length/k ;i++){
+            //pre作为每一小段链表的头节点，负责衔接
+            for(int j=1; j<k; j++){
+                temp = cur.next;
+                cur.next= temp.next;
+                temp.next = pre.next;
+                pre.next = temp;
+            }
+            pre = cur;
+            cur = cur.next;
+        }
+        return res.next;
+    }
+
     // 单链表反转
     public static Node reverse(Node list) {
         Node headNode = null;  // 反转后的头结点
@@ -56,10 +91,10 @@ public class LinkedListAlgo {
         Node head = null;
         if (la.data <= lb.data){
             head = la;
-            head.next = mergeSortedLists(la.next, lb);
+            head.next = mergeSortedListsWithRecurion(la.next, lb);
         } else {
             head = lb;
-            head.next = mergeSortedLists(la, lb.next);
+            head.next = mergeSortedListsWithRecurion(la, lb.next);
         }
         return head;
     }

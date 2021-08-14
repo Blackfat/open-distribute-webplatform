@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ClassUtils;
 
 /**
  * @author wangfeiyang
@@ -29,6 +30,10 @@ public class ApplicationContexts implements ApplicationContextAware, Environment
     public void setEnvironment(Environment environment) {
         ApplicationContexts.environment = environment;
 
+    }
+
+    public static Class<?> forName(String className){
+        return ClassUtils.resolveClassName(className, Thread.currentThread().getContextClassLoader());
     }
 
     public static ApplicationContext get() {
